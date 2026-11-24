@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DJ أحمد رضا — احجز حفلتك</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07061a;--card:#0e0b26;--pur:#7c3aed;--mag:#d946ef;--line:#3b2a7a;--tx:#fff;--mut:#b9b3d9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--tx);font-family:Cairo,Tahoma,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit}
+.wrap{max-width:1400px;margin:auto;padding:0 24px}
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(7,6,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid #1d1745}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;font-size:26px;line-height:1}
+.logo small{display:block;font-size:15px;letter-spacing:2px;text-align:right}
+.hp{width:44px;height:38px;border:4px solid var(--mag);border-bottom:0;border-radius:24px 24px 0 0;position:relative;filter:drop-shadow(0 0 6px var(--mag))}
+.hp:before,.hp:after{content:"";position:absolute;bottom:-8px;width:11px;height:20px;background:var(--pur);border-radius:6px;border:2px solid var(--mag)}
+.hp:before{right:-6px}.hp:after{left:-6px}
+nav{display:flex;gap:28px;font-weight:600;font-size:15px}
+nav a{padding:22px 0;border-bottom:2px solid transparent;color:#e7e3ff}
+nav a.on,nav a:hover{color:var(--mag);border-color:var(--mag)}
+.soc{display:flex;gap:10px}
+.soc a{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:900}
+.fb{background:#1877f2}.tt{background:#000;border:1px solid #444}.ig{background:linear-gradient(45deg,#f9a03f,#e1306c,#833ab4)}.yt{background:#f00}.wa{background:#25d366}
+/* hero */
+.hero{position:relative;min-height:600px;background:
+radial-gradient(ellipse at 15% 20%,rgba(56,189,248,.35),transparent 40%),
+radial-gradient(ellipse at 30% 80%,rgba(217,70,239,.45),transparent 50%),
+radial-gradient(ellipse at 70% 10%,rgba(124,58,237,.5),transparent 50%),
+linear-gradient(120deg,#12082e,#1b0b4a 50%,#0a0722)}
+.hero:before{content:"";position:absolute;inset:0;background:var(--hero-img,none) left/cover no-repeat;opacity:.9}
+.hero .wrap{position:relative;display:grid;grid-template-columns:360px 1fr;gap:24px;align-items:center;padding-top:36px;padding-bottom:30px}
+.book{background:rgba(10,8,30,.88);border:2px solid var(--pur);border-radius:18px;padding:22px;box-shadow:0 0 30px rgba(168,85,247,.5)}
+.book h2{font-size:19px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.f{display:flex;align-items:center;gap:10px;background:#15122f;border:1px solid #2a2455;border-radius:8px;padding:0 12px;margin-bottom:10px;height:44px}
+.f i{font-style:normal;color:#e9d5ff;font-size:17px;width:20px;text-align:center}
+.f input,.f select{flex:1;background:none;border:0;color:#fff;outline:0;font-size:14px;height:100%;min-width:0}
+.f select option{background:#15122f}
+.f:focus-within{border-color:var(--mag)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;color:#fff;font-weight:700;border-radius:8px;background:linear-gradient(90deg,#6d28d9,#8b5cf6)}
+.btn.big{width:100%;height:46px;font-size:15px;margin-top:4px}
+.btn:hover{filter:brightness(1.15)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.mid{text-align:center}
+.wave{display:flex;align-items:center;justify-content:center;gap:18px}
+.wave svg{width:110px;height:46px}
+.dj{font-size:clamp(70px,9vw,120px);font-weight:900;line-height:1;font-style:italic;background:linear-gradient(180deg,#f0abfc,#c026d3 60%,#7e22ce);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(217,70,239,.7))}
+.name{font-size:clamp(60px,8.5vw,118px);font-weight:900;line-height:1.1;background:linear-gradient(180deg,#fff,#cfcfe6 55%,#8a8aa8);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 6px #000);margin-top:-14px}
+.name:after{content:"";display:block;width:60%;height:4px;margin:0 auto;border-radius:4px;background:linear-gradient(90deg,transparent,var(--mag),transparent);box-shadow:0 0 12px var(--mag)}
+.tag{font-size:22px;font-weight:700;margin:12px 0 20px}
+.feats{display:flex;justify-content:center}
+.feats div{padding:0 22px;border-inline-start:1px solid #3a2f70;font-size:13px;font-weight:600}
+.feats div:first-child{border:0}
+.feats b{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 6px;border:1.5px solid var(--mag);border-radius:50%;font-size:22px;box-shadow:0 0 12px rgba(217,70,239,.5)}
+/* titles */
+.title{display:flex;align-items:center;gap:18px;justify-content:center;font-size:30px;font-weight:900;margin:18px 0}
+.title:before,.title:after{content:"";height:2px;width:120px;background:linear-gradient(90deg,transparent,var(--mag))}
+.title:after{background:linear-gradient(270deg,transparent,var(--mag))}
+/* services */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-bottom:26px}
+.sc{position:relative;height:190px;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;padding:12px;background:var(--img,none) center/cover,var(--g)}
+.sc:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent 25%,rgba(7,6,26,.95))}
+.sc>*{position:relative}
+.sc .ic{font-size:30px;color:#e9d5ff;margin-bottom:2px;filter:drop-shadow(0 0 8px var(--mag))}
+.sc h3{font-size:19px}.sc p{font-size:13px;color:#ddd;margin:2px 0 10px}
+.sc .btn{height:32px;padding:0 22px;font-size:13px;border-radius:16px}
+/* bottom */
+.bot{display:grid;grid-template-columns:1fr 1.1fr 1fr;border-top:1px solid #1d1745;background:#09071e}
+.bot>section{padding:22px 26px;border-inline-start:1px solid #1d1745}
+.bot>section:first-child{border:0}
+.bot h2{font-size:21px;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.bot h2:after{content:"";flex:1;height:2px;background:linear-gradient(270deg,transparent,var(--mag))}
+.about{display:flex;gap:14px;align-items:center}
+.about p{color:var(--mut);font-size:14px;line-height:1.9;margin-bottom:14px}
+.about .btn{height:36px;padding:0 20px;font-size:13px;border-radius:18px}
+.hpbig{flex:0 0 150px;height:150px;border-radius:50%;background:radial-gradient(circle,#4c1d95,transparent 70%);display:grid;place-items:center;font-size:80px;filter:drop-shadow(0 0 16px #6d28d9)}
+.rev{display:flex;gap:14px;align-items:center}
+.who{text-align:center;font-size:14px;font-weight:600;flex:0 0 100px}
+.av{width:84px;height:84px;border-radius:50%;margin:0 auto 6px;border:2px solid var(--pur);background:radial-gradient(circle at 50% 38%,#d9a982 22%,#222 24%) ,#1a1a3a;display:grid;place-items:center;font-size:36px}
+.quote{flex:1;background:#14112d;border-radius:10px;padding:14px 16px;font-size:14px;line-height:1.8;position:relative;min-height:112px}
+.quote b{position:absolute;top:-4px;left:10px;color:var(--mag);font-size:34px}
+.stars{color:#fbbf24;margin-top:4px;letter-spacing:3px}
+.arr{background:#1b1640;color:#fff;border:0;width:26px;height:26px;border-radius:6px;cursor:pointer}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
+.dots i{width:9px;height:9px;border-radius:50%;background:#4b3f8f;cursor:pointer}.dots i.on{background:var(--mag)}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gal div{aspect-ratio:1/1.1;border-radius:6px;border:1px solid var(--pur);background:var(--img,none) center/cover,var(--g)}
+.more{display:block;width:max-content;margin:-14px auto 0;position:relative;height:30px;padding:0 16px;font-size:13px}
+/* footer */
+footer{border-top:1px solid #1d1745;background:#060516}
+footer .wrap{display:grid;grid-template-columns:1fr 1.3fr 1fr 1fr;gap:20px;align-items:center;padding-top:20px;padding-bottom:20px;font-size:13px}
+footer h4{font-size:14px;margin-bottom:10px}
+.nl{display:flex;border:1px solid #2a2455;border-radius:6px;overflow:hidden;background:#15122f}
+.nl input{flex:1;background:none;border:0;color:#fff;padding:0 12px;height:38px;min-width:0;outline:0}
+.nl .btn{border-radius:0;padding:0 16px}
+.soc.lg a{width:36px;height:36px;font-size:15px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#16a34a;padding:12px 22px;border-radius:10px;font-weight:700;display:none;z-index:50}
+@media(max-width:1100px){nav{display:none}.hero .wrap{grid-template-columns:1fr}.mid{order:-1}.svc{grid-template-columns:1fr 1fr}.bot{grid-template-columns:1fr}.bot>section{border:0;border-top:1px solid #1d1745}footer .wrap{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.svc{grid-template-columns:1fr}.feats{flex-wrap:wrap;gap:12px}.feats div{border:0;padding:0 10px}.about,.rev{flex-wrap:wrap}.title:before,.title:after{width:30px}footer .wrap{grid-template-columns:1fr}.soc.top{display:none}.wave svg{display:none}}
+.pk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center}.pk b{font-size:28px;color:var(--mag);display:block;margin:8px 0}.pk p{color:var(--mut);font-size:14px;margin-bottom:12px;white-space:pre-line}.pk .btn{height:36px;padding:0 20px;font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="logo" href="#home"><span class="hp"></span><span><small>DJ</small>أحمد رضا</span></a>
+ <nav><a class="on" href="#home">🏠 الرئيسية</a><a href="#gallery">🖼 معرض الصور</a><a href="#reviews">👥 آراء العملاء</a><a href="#about">ℹ️ من نحن</a><a href="#contact">✉️ تواصل معنا</a></nav>
+ <div class="soc top"><a class="fb" href="#">f</a><a class="tt" href="#">♪</a><a class="ig" href="#">◎</a><a class="yt" href="#">▶</a><a class="wa" href="#">✆</a></div>
+</div></header>
+
+<main id="home">
+<section class="hero"><div class="wrap">
+ <form class="book" id="bf">
+  <h2>📅 احجز حفلتك الآن</h2>
+  <label class="f"><i>👤</i><input name="n" placeholder="الاسم بالكامل" required></label>
+  <label class="f"><i>📞</i><input name="p" type="tel" placeholder="رقم الهاتف" required></label>
+  <label class="f"><i>☆</i><select name="t" required><option value="">نوع المناسبة</option><option>حفلات زفاف وأفراح</option><option>حفلات الشركات والفعاليات</option><option>حفلات خاصة</option><option>حفلات عامة ومهرجانات</option></select></label>
+  <label class="f"><i>🗓</i><input name="d" type="date" required title="تاريخ الحفل"></label>
+  <label class="f"><i>📍</i><input name="l" placeholder="مكان الحفل" required></label>
+  <label class="f"><i>🎁</i><select name="k" id="pks"><option value="">الباقة (اختياري)</option></select></label>
+  <p id="am" style="font-size:13px;margin:-4px 0 8px"></p>
+  <button class="btn big" type="submit">إرسال طلب الحجز ➤</button>
+ </form>
+ <div class="mid">
+  <div class="wave">
+   <svg viewBox="0 0 110 46" fill="none" stroke="#d946ef" stroke-width="3" stroke-linecap="round"><path d="M4 23v0M14 16v14M24 8v30M34 14v18M44 4v38M54 12v22M64 18v10M74 10v26M84 16v14M94 20v6M104 23v0"/></svg>
+   <div class="dj">DJ</div>
+   <svg viewBox="0 0 110 46" fill="none" stroke="#d946ef" stroke-width="3" stroke-linecap="round"><path d="M4 23v0M14 20v6M24 14v18M34 8v30M44 14v18M54 4v38M64 12v22M74 16v14M84 8v30M94 16v14M104 23v0"/></svg>
+  </div>
+  <div class="name">أحمد رضا</div>
+  <p class="tag" data-k="tagline">أجواء مميزة .. موسيقى بإحساس مختلف</p>
+  <div class="feats">
+   <div><b>💎</b>احترافية عالية</div><div><b>🎵</b>موسيقى متنوعة</div><div><b>🎧</b>أحدث المعدات</div><div><b>⏱</b>متاح طوال الوقت</div>
+  </div>
+ </div>
+</div></section>
+
+<h2 class="title">خدماتنا</h2>
+<div class="wrap"><div class="svc" id="services">
+ <div class="sc" style="--g:linear-gradient(135deg,#7c2d12,#a21caf 50%,#1e1b4b)"><span class="ic">👥</span><h3>حفلات الشركات والفعاليات</h3><p>إضفاء أجواء رائعة لفعالياتكم</p><a class="btn" href="#home" data-t="حفلات الشركات والفعاليات">احجز الآن ‹</a></div>
+ <div class="sc" style="--g:linear-gradient(135deg,#f5f0e6,#a16207 55%,#3b2506)"><span class="ic">💍</span><h3>حفلات الزفاف والأفراح</h3><p>موسيقى تليق بأجمل لحظات حياتكم</p><a class="btn" href="#home" data-t="حفلات زفاف وأفراح">احجز الآن ‹</a></div>
+ <div class="sc" style="--g:linear-gradient(135deg,#be185d,#4c1d95 55%,#0f172a)"><span class="ic">🎁</span><h3>الحفلات الخاصة</h3><p>حفلة مميزة بطابع خاص</p><a class="btn" href="#home" data-t="حفلات خاصة">احجز الآن ‹</a></div>
+ <div class="sc" style="--g:linear-gradient(135deg,#0ea5e9,#4c1d95 55%,#0f0a2e)"><span class="ic">🎶</span><h3>حفلات عامة ومهرجانات</h3><p>أجواء لا تُنسى مع DJ أحمد رضا</p><a class="btn" href="#home" data-t="حفلات عامة ومهرجانات">احجز الآن ‹</a></div>
+</div></div>
+
+<h2 class="title" id="pkt" hidden>باقاتنا وأسعارنا</h2>
+<div class="wrap" id="pkw" hidden><div class="svc" id="pk"></div></div>
+<div class="bot">
+ <section id="about"><h2>من نحن</h2><div class="about"><div><p data-k="about">DJ أحمد رضا .. خبرة طويلة في عالم الموسيقى وتقديم أجمل الحفلات والمناسبات بأحدث المعدات وأفضل الإيقاعات التي تناسب جميع الأذواق.</p><a class="btn" href="#contact">تعرف علينا أكثر ‹</a></div><div class="hpbig">🎧</div></div></section>
+ <section id="reviews"><h2>آراء عملائنا</h2>
+  <div class="rev"><button class="arr" id="nx" aria-label="التالي">›</button>
+   <div class="quote"><b>”</b><div id="qt"></div><div class="stars">★★★★★</div></div>
+   <div class="who"><div class="av">🧔</div><span id="qn"></span></div><button class="arr" id="pv" aria-label="السابق">‹</button></div>
+  <div class="dots" id="dots"></div>
+  <form class="nl" id="rf" style="margin-top:12px"><input name="n" placeholder="اسمك" required style="max-width:90px"><input name="t" placeholder="اكتب رأيك" required maxlength="300"><select name="r" style="background:#15122f;color:#fff;border:0"><option>5</option><option>4</option><option>3</option></select><button class="btn">أرسل</button></form></section>
+ <section id="gallery"><h2>معرض الفيديوهات</h2>
+  <div class="gal"><div style="--g:linear-gradient(135deg,#0ea5e9,#be185d)"></div><div style="--g:linear-gradient(135deg,#4c1d95,#06b6d4)"></div><div style="--g:linear-gradient(135deg,#1e1b4b,#d946ef)"></div></div>
+  <a class="btn more" href="#gallery">🖼 عرض المزيد</a></section>
+</div>
+</main>
+
+<footer id="contact"><div class="wrap">
+ <div class="logo"><span class="hp"></span><span><small>DJ</small>أحمد رضا</span></div>
+ <div><h4>✉ أشترك في نشرتنا البريدية</h4><form class="nl" id="nf"><input type="email" placeholder="أدخل بريدك الإلكتروني" required><button class="btn">✉ اشترك</button></form></div>
+ <div><h4>تابعنا على مواقع التواصل الاجتماعي</h4><div class="soc lg"><a class="fb" href="#">f</a><a class="tt" href="#">♪</a><a class="ig" href="#">◎</a><a class="yt" href="#">▶</a><a class="wa" href="#">✆</a></div></div>
+ <div style="color:var(--mut)">© 2026 دي جي أحمد رضا — جميع الحقوق محفوظة</div>
+</div></footer>
+<div class="toast" id="ts"></div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getFirestore,doc,getDoc,getDocs,collection,query,where,writeBatch,serverTimestamp,addDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyB93ZihEYlRvg2tUwmZqRig_b42pDIN7sk",
+  authDomain: "dj-ahmed-reda.firebaseapp.com",
+  projectId: "dj-ahmed-reda",
+  storageBucket: "dj-ahmed-reda.firebasestorage.app",
+  messagingSenderId: "472655965203",
+  appId: "1:472655965203:web:cc794511c15d753df8e3e6",
+  measurementId: "G-RKPR4FYK5Z"
+};
+const db=getFirestore(initializeApp(firebaseConfig)),$=s=>document.querySelector(s);
+let WA="";
+const toast=m=>{const t=$('#ts');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',4000)};
+document.querySelectorAll('[data-t]').forEach(a=>a.onclick=()=>$('[name=t]').value=a.dataset.t);
+const di=$('[name=d]');di.min=new Date().toISOString().slice(0,10);
+di.onchange=async()=>{di.setCustomValidity('');$('#am').textContent='';if(!di.value)return;
+ try{if((await getDoc(doc(db,'slots',di.value))).exists()){di.setCustomValidity('محجوز');$('#am').textContent='❌ هذا اليوم محجوز، اختر تاريخاً آخر'}else $('#am').textContent='✅ التاريخ متاح'}catch(e){}};
+$('#bf').onsubmit=async e=>{e.preventDefault();const f=e.target;
+ const b=writeBatch(db);b.set(doc(db,'slots',f.d.value),{at:serverTimestamp()});
+ b.set(doc(collection(db,'bookings')),{name:f.n.value,phone:f.p.value,type:f.t.value,date:f.d.value,location:f.l.value,package:f.k.value,status:'pending',createdAt:serverTimestamp()});
+ try{await b.commit();toast('تم إرسال طلب الحجز بنجاح');const m=`طلب حجز جديد\nالاسم: ${f.n.value}\nالهاتف: ${f.p.value}\nالمناسبة: ${f.t.value}\nالتاريخ: ${f.d.value}\nالمكان: ${f.l.value}`;f.reset();$('#am').textContent='';
+  if(WA)setTimeout(()=>location.href='https://wa.me/'+WA+'?text='+encodeURIComponent(m),1500)}catch(x){toast('هذا اليوم محجوز أو حدث خطأ، حاول مرة أخرى')}};
+$('#nf').onsubmit=async e=>{e.preventDefault();try{await addDoc(collection(db,'subs'),{email:e.target[0].value,at:Date.now()});toast('تم الاشتراك بنجاح');e.target.reset()}catch(x){toast('تعذر الاشتراك')}};
+$('#rf').onsubmit=async e=>{e.preventDefault();const f=e.target;try{await addDoc(collection(db,'reviews'),{name:f.n.value,text:f.t.value,rating:+f.r.value,approved:false,at:Date.now()});toast('شكراً لك، سيظهر رأيك بعد المراجعة');f.reset()}catch(x){toast('تعذر الإرسال')}};
+(async()=>{try{
+ const c=(await getDoc(doc(db,'site','content'))).data()||{};
+ WA=(c.waNumber||'').replace(/\D/g,'');
+ document.querySelectorAll('[data-k]').forEach(e=>{if(c[e.dataset.k])e.textContent=c[e.dataset.k]});
+ if(c.heroImg)$('.hero').style.setProperty('--hero-img',`url("${c.heroImg}")`);
+ document.querySelectorAll('.soc a').forEach(a=>{const k=a.classList[0],u=k=='wa'?(WA&&'https://wa.me/'+WA):c[k];u?(a.href=u,a.target='_blank',a.rel='noopener'):a.style.display='none'});
+ const P=(await getDocs(collection(db,'packages'))).docs.map(d=>d.data()).sort((a,b)=>(a.order||0)-(b.order||0));
+ if(P.length){$('#pkt').hidden=$('#pkw').hidden=false;P.forEach(p=>{
+  const o=document.createElement('option');o.textContent=p.name;$('#pks').append(o);
+  const d=document.createElement('div');d.className='pk';
+  const h=document.createElement('h3');h.textContent=p.name;
+  const pr=document.createElement('b');pr.textContent=Number(p.price).toLocaleString('ar-EG')+' ج.م';
+  const t=document.createElement('p');t.textContent=p.desc||'';
+  const a=document.createElement('a');a.className='btn';a.href='#home';a.textContent='احجز هذه الباقة';a.onclick=()=>$('#pks').value=p.name;
+  d.append(h,pr,t,a);$('#pk').append(d)})}
+ const G=(await getDocs(collection(db,'gallery'))).docs.map(d=>d.data()).sort((a,b)=>(a.order||0)-(b.order||0));
+ if(G.length){const g=$('.gal');g.replaceChildren();G.forEach(x=>{const a=document.createElement('a');a.href=x.url;a.target='_blank';a.rel='noopener';a.style.cssText='aspect-ratio:1/1.1;border-radius:6px;border:1px solid var(--pur);display:grid;place-items:center;font-size:34px;background:#15122f center/cover';
+  if(x.type!='video')a.style.backgroundImage=`url("${x.url}")`;else a.textContent='▶';g.append(a)})}
+ const R=(await getDocs(query(collection(db,'reviews'),where('approved','==',true)))).docs.map(d=>d.data());
+ let i=0;const dots=$('#dots');R.forEach((_,k)=>{const s=document.createElement('i');s.onclick=()=>show(k);dots.append(s)});
+ const show=k=>{if(!R.length){$('#qt').textContent='كن أول من يشاركنا رأيه';$('.stars').hidden=true;$('#qn').textContent='';return}
+  i=(k+R.length)%R.length;$('#qt').textContent=R[i].text;$('#qn').textContent=R[i].name;$('.stars').hidden=false;$('.stars').textContent='★'.repeat(R[i].rating||5);[...dots.children].forEach((s,j)=>s.className=j==i?'on':'')};
+ $('#nx').onclick=()=>show(i+1);$('#pv').onclick=()=>show(i-1);show(0);if(R.length>1)setInterval(()=>show(i+1),7000);
+}catch(e){toast('تعذر تحميل البيانات، تأكد من إعدادات Firebase')}})();
+</script>
+</body>
+</html>
