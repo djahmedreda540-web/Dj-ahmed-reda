@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>لوحة تحكم DJ أحمد رضا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#07061a;color:#fff;font-family:Cairo,Tahoma,sans-serif;min-height:100vh}
+button,input,select,textarea{font-family:inherit;font-size:14px;color:#fff;background:#15122f;border:1px solid #2a2455;border-radius:8px;padding:8px 10px;min-width:0}
+button{cursor:pointer;background:linear-gradient(90deg,#6d28d9,#8b5cf6);border:0;font-weight:700}
+button.del{background:#b91c1c}
+a{color:#d8b4fe}
+textarea{min-height:60px;width:100%}
+.box{max-width:380px;margin:12vh auto;background:#0e0b26;border:2px solid #7c3aed;border-radius:16px;padding:24px;display:grid;gap:12px;box-shadow:0 0 30px rgba(168,85,247,.4)}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 16px;background:#0e0b26;border-bottom:1px solid #3b2a7a;position:sticky;top:0;z-index:5}
+header h1{font-size:19px;flex:1}
+header button.on{background:#d946ef}
+#v{padding:16px;max-width:1200px;margin:auto}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#0e0b26;border:1px solid #2a2455;border-radius:10px;padding:10px;margin-bottom:8px}
+.row input,.row select{flex:1 1 130px}.row textarea{flex:2 1 220px;width:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.card{background:#0e0b26;border:1px solid #3b2a7a;border-radius:12px;padding:16px;text-align:center}
+.card b{display:block;font-size:26px;color:#d946ef}
+#msg{color:#fca5a5;font-size:13px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="box" id="login">
+ <h1>تسجيل دخول الإدارة</h1>
+ <input id="em" type="email" placeholder="البريد الإلكتروني" autocomplete="username">
+ <input id="pw" type="password" placeholder="كلمة المرور" autocomplete="current-password">
+ <button id="go">دخول</button><p id="msg"></p>
+</div>
+<div id="app" hidden>
+ <header><h1>لوحة تحكم DJ أحمد رضا</h1><span id="tabs" style="display:contents"></span><button class="del" id="out">خروج</button></header>
+ <div id="v"></div>
+</div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,getDoc,setDoc,getDocs,addDoc,updateDoc,deleteDoc,collection,query,orderBy,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {firebaseConfig} from "./config.js";
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app),$=s=>document.querySelector(s);
+const h=(t,a={},...c)=>{const e=document.createElement(t);for(const k in a)k in e?e[k]=a[k]:e.setAttribute(k,a[k]);e.append(...c);return e};
+let role='',B=[];
+$('#go').onclick=async()=>{$('#msg').textContent='';try{await signInWithEmailAndPassword(auth,$('#em').value,$('#pw').value)}catch(e){$('#msg').textContent='بيانات الدخول غير صحيحة'}};
+$('#out').onclick=()=>signOut(auth);
+onAuthStateChanged(auth,async u=>{
+ $('#login').hidden=!!u;$('#app').hidden=!u;if(!u)return;
+ const a=await getDoc(doc(db,'admins',u.uid));
+ if(!a.exists()){await signOut(auth);$('#msg').textContent='هذا الحساب لا يملك صلاحية الإدارة';return}
+ role=a.data().role;const T=[['bookings','الحجوزات'],['stats','الإحصائيات'],['reviews','الآراء']];
+ if(role=='owner')T.push(['packages','الباقات والأسعار'],['gallery','المعرض'],['content','النصوص والصور']);
+ $('#tabs').replaceChildren(...T.map(([k,l])=>h('button',{textContent:l,id:'t-'+k,onclick:()=>tab(k)})));tab('bookings')});
+async function loadB(){B=(await getDocs(query(collection(db,'bookings'),orderBy('date','desc')))).docs.map(d=>({id:d.id,...d.data()}))}
+async function tab(k){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.id=='t-'+k));$('#v').replaceChildren();
+ if(k=='bookings'){await loadB();bk()}else if(k=='stats'){await loadB();st()}
+ else if(k=='reviews')crud('reviews',[{k:'name',l:'الاسم'},{k:'text',l:'الرأي',t:'area'},{k:'rating',l:'التقييم 1-5',t:'num'},{k:'approved',l:'ظاهر في الموقع',t:'check'}],'at')
+ else if(k=='packages')crud('packages',[{k:'name',l:'اسم الباقة'},{k:'price',l:'السعر (ج.م)',t:'num'},{k:'desc',l:'الوصف والمميزات',t:'area'},{k:'order',l:'الترتيب',t:'num'}],'order')
+ else if(k=='gallery')crud('gallery',[{k:'url',l:'رابط الصورة أو الفيديو'},{k:'type',l:'النوع: image أو video'},{k:'order',l:'الترتيب',t:'num'}],'order')
+ else content()}
+async function upd(b,p){Object.assign(b,p);await updateDoc(doc(db,'bookings',b.id),p);
+ if(p.status=='cancelled')await deleteDoc(doc(db,'slots',b.date));else if(p.status)await setDoc(doc(db,'slots',b.date),{at:serverTimestamp()})}
+function bk(){const v=$('#v');if(!B.length)return v.append(h('p',{textContent:'لا توجد حجوزات بعد'}));
+ B.forEach(b=>{
+  const pr=h('input',{type:'number',value:b.price||'',placeholder:'السعر المتفق عليه',onchange:()=>upd(b,{price:+pr.value})});
+  const s=h('select',{onchange:()=>upd(b,{status:s.value})},...[['pending','قيد الانتظار'],['confirmed','مؤكد'],['cancelled','ملغي']].map(([k,l])=>h('option',{value:k,textContent:l,selected:b.status==k})));
+  v.append(h('div',{className:'row'},h('b',{textContent:b.date}),h('span',{textContent:`${b.name} • ${b.type} • ${b.location}${b.package?' • '+b.package:''} •`}),h('a',{href:'tel:'+b.phone,textContent:b.phone}),h('a',{href:'https://wa.me/'+String(b.phone).replace(/\D/g,''),target:'_blank',textContent:'واتساب'}),pr,s,
+   role=='owner'?h('button',{className:'del',textContent:'حذف',onclick:async()=>{if(!confirm('حذف الحجز نهائياً؟'))return;await deleteDoc(doc(db,'bookings',b.id));if(b.status!='cancelled')await deleteDoc(doc(db,'slots',b.date));tab('bookings')}}):''))})}
+function st(){const c=s=>B.filter(b=>b.status==s),ok=c('confirmed'),sum=a=>a.reduce((t,b)=>t+(b.price||0),0),M={};
+ ok.forEach(b=>M[b.date.slice(0,7)]=(M[b.date.slice(0,7)]||0)+(b.price||0));
+ const card=(l,n)=>h('div',{className:'card'},h('b',{textContent:n}),l);
+ $('#v').append(h('div',{className:'cards'},card('إجمالي الحجوزات',B.length),card('قيد الانتظار',c('pending').length),card('مؤكدة',ok.length),card('ملغاة',c('cancelled').length),card('إيرادات الحجوزات المؤكدة (ج.م)',sum(ok).toLocaleString('ar-EG'))),
+  h('h3',{textContent:'الإيرادات حسب الشهر',style:'margin-bottom:8px'}),...Object.keys(M).sort().reverse().map(m=>h('div',{className:'row'},h('b',{textContent:m}),h('span',{textContent:M[m].toLocaleString('ar-EG')+' ج.م'}))))}
+async function crud(col,F,ord){const box=$('#v');box.replaceChildren();
+ const rows=(await getDocs(collection(db,col))).docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a[ord]||0)-(b[ord]||0));rows.push({_new:1});
+ rows.forEach(r=>{
+  const ins=F.map(f=>{const i=h(f.t=='area'?'textarea':'input',{placeholder:f.l,title:f.l});if(f.t=='check')i.type='checkbox',i.checked=!!r[f.k];else{if(f.t=='num')i.type='number';i.value=r[f.k]??''}return i});
+  const get=()=>{const o={};F.forEach((f,j)=>o[f.k]=f.t=='check'?ins[j].checked:f.t=='num'?+ins[j].value:ins[j].value);if(col=='reviews'&&!r.at)o.at=Date.now();return o};
+  box.append(h('div',{className:'row'},...ins,
+   h('button',{textContent:r._new?'إضافة':'حفظ',onclick:async()=>{r._new?await addDoc(collection(db,col),get()):await setDoc(doc(db,col,r.id),{...get(),...(r.at?{at:r.at}:{})});crud(col,F,ord)}}),
+   r._new?'':h('button',{className:'del',textContent:'حذف',onclick:async()=>{if(confirm('تأكيد الحذف؟')){await deleteDoc(doc(db,col,r.id));crud(col,F,ord)}}})))})}
+async function content(){const ref=doc(db,'site','content'),c=(await getDoc(ref)).data()||{};
+ const F=[['waNumber','رقم واتساب بكود الدولة (مثال 201012345678)'],['heroImg','رابط صورة الهيرو (البانر الرئيسي)'],['tagline','الشعار النصي تحت الاسم'],['about','نص قسم من نحن'],['fb','رابط فيسبوك'],['ig','رابط إنستجرام'],['tt','رابط تيك توك'],['yt','رابط يوتيوب']];
+ const ins=F.map(([k,l])=>{const i=h(k=='about'?'textarea':'input',{placeholder:l,title:l,value:c[k]||''});return h('label',{style:'display:grid;gap:4px;margin-bottom:10px'},l,i)});
+ $('#v').append(...ins,h('button',{textContent:'حفظ التغييرات',onclick:async()=>{const o={};F.forEach(([k],j)=>o[k]=ins[j].querySelector('input,textarea').value.trim());await setDoc(ref,o,{merge:true});alert('تم الحفظ')}}))}
+</script>
+</body>
+</html>
